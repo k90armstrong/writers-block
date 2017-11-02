@@ -18,6 +18,14 @@ $(document).ready(function () {
 
     // andrew below here
 
+    $.ajax({
+        url: "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece",
+        method: "GET"
+    }).done(function (response) {
+        console.log(response.Title);
+    });
+
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece";
 
     // prathima below here
 
