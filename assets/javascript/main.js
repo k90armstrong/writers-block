@@ -25,7 +25,13 @@ $(document).ready(function () {
         console.log(response.Title);
     });
 
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece";
+
+    $.ajax({
+        url: "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
+        method: 'GET'
+    }).done(function (response) {
+        console.log(response);
+    });
 
     // prathima below here
 
