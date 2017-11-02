@@ -1,0 +1,50 @@
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 203px solid transparent;
+    border-right: 182px solid transparent;
+    border-top: 341px solid #2f2f2f;
+    font-size: 0;
+    line-height: 0;
+    margin-left: 23px;
+    margin-top: 30px;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 203px solid transparent;
+    /* left arrow slant */
+    border-right: 182px solid transparent;
+    /* right arrow slant */
+    border-bottom: 341px solid #2f2f2f;
+    /* bottom, add background color here */
+    font-size: 0;
+    line-height: 0;
+    margin-top: -29px;
+    margin-bottom: 30px;
+    float: left;
+}
+
+.arrow-down2 {
+    width: 0;
+    height: 0;
+    border-left: 167px solid transparent;
+    border-right: 142px solid transparent;
+    border-top: 312px solid #2f2f2f;
+    font-size: 0;
+    line-height: 0;
+    margin-left: 226px;
+    margin-top: -20px;
+}
+
+.logo {
+    clear: both;
+    width: 274px;
+    height: 200px;
+    margin-top: -317px;
+}
+
+.btn {
+    float: right;
+}
