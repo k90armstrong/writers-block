@@ -8,7 +8,7 @@
     line-height: 0;
     margin-left: 23px;
     margin-top: 30px;
-/*    background: url(https://previews.123rf.com/images/amiloslava/amiloslava1401/amiloslava140100207/25198992-Seamless-pattern-with-handwriting-text-Stock-Vector-writing-handwriting-cursive.jpg);
+    /*    background: url(https://previews.123rf.com/images/amiloslava/amiloslava1401/amiloslava140100207/25198992-Seamless-pattern-with-handwriting-text-Stock-Vector-writing-handwriting-cursive.jpg);
 */
 }
 
@@ -60,27 +60,21 @@
     padding-left: 584px;
 }
 
+
 /*
 .frontTriPic{
     background: url(https://previews.123rf.com/images/amiloslava/amiloslava1401/amiloslava140100207/25198992-Seamless-pattern-with-handwriting-text-Stock-Vector-writing-handwriting-cursive.jpg);
 }*/
 
+.mapSearch {
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    left: 11px;
+    background-color: rgb(233, 220, 220);
+    opacity: .5;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.mapContainer {
+    position: relative;
+}

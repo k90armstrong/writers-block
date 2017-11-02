@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Second Page</title>
 </head>
- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
 <body>
 
@@ -18,23 +19,31 @@
 		<button type="button" class="btn btn-default">WORD</button>
 
 		<div class="row">
-		    <div class="input-field col s6">
-		      <input value="Alvin" id="first_name2" type="text" class="validate">
-		      <label class="active" for="first_name2">First Name</label>
-		    </div>
-  		</div>
-
-		
+			<div class="input-field col s6">
+				<input value="Alvin" id="first_name2" type="text" class="validate">
+				<label class="active" for="first_name2">First Name</label>
+			</div>
+		</div>
 
 
-
+		<div class="mapContainer">
+			<div class="row mapSearch">
+				<div class="input-field col s12">
+					<input id="mapSearch" type="text" class="validate">
+					<label class="active" for="mapSearch">Search City</label>
+				</div>
+			</div>
+			<div id="googleMap" style="width:100%; height:90vh;"></div>
+		</div>
 
 
 
 
 	</div>
- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="assets/javascript/main.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	    crossorigin="anonymous"></script>
+	<script src="assets/javascript/main.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY2aMZMMV2WwEdBb0XbwBunGWZBkZgch4&callback=myMap"></script>
 </body>
+
 </html>
