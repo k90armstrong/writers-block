@@ -2,6 +2,16 @@ $(document).ready(function () {
     console.log('hello world');
 
     // global variables
+    var meta = JSON.parse('https://epic.gsfc.nasa.gov/api/natural');
+  
+  var queryURL= "https://api.giphy.com/v1/gifs/search?q="+ giphy.searchValue +"&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
+
+    $.ajax('https://epic.gsfc.nasa.gov/api/natural', { 
+        success : function(iDataArr, stat, xhr) { 
+            // do something with the list
+        }
+    });
+
 
     // functions___________________________________________________________________________
 
