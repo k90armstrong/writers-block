@@ -5,7 +5,7 @@ var homeLocation = {
     lat: 42.9,
     lng: -101.8099
 };
-// MAP FUCNTION HERE
+// MAP FUNCTION HERE
 function myMap() {
     var mapProp = {
         zoom: 5,
@@ -17,7 +17,7 @@ function myMap() {
     google.maps.event.addListener(map, 'projection_changed', function () {
 
         overlay = new google.maps.OverlayView();
-        overlay.draw = function () {};
+        overlay.draw = function () { };
         overlay.setMap(map);
     });
     // map listeners
@@ -71,6 +71,16 @@ function addMarker(location) {
 
 $(document).ready(function () {
     console.log('hello world');
+
+    //   Materialize.updateTextFields();
+    // });
+
+
+
+    // these are the buttons
+
+
+
 
     // global variables
     var twitterConsumerKey = "ajhJmNa7Mwe2OTXHtu7irdrlJ";
@@ -127,9 +137,9 @@ $(document).ready(function () {
         var type = searchValue;
         var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
         $.ajax({
-                url: queryURL,
-                method: 'GET'
-            })
+            url: queryURL,
+            method: 'GET'
+        })
             .done(function (response) {
                 console.log(response);
                 // if results are less than 10, change to length of what exists
@@ -164,8 +174,8 @@ $(document).ready(function () {
                     var trackTitleCell = $("<td>");
                     artistCell.text(track.artist);
                     trackTitleCell.text(track.name);
-                    trackRow.append(artistCell);
                     trackRow.append(trackTitleCell);
+                    trackRow.append(artistCell);
 
                     // append to table body
                     $(".track-rows").append(trackRow);
