@@ -1,4 +1,4 @@
-/*.arrows {
+    /*.arrows {
   width: 0;
   height: 0;
   text-indent: -9999px;
@@ -8,126 +8,135 @@
     background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg")
 }*/
 
+    .arrow-down {
+        width: 300px;
+        height: 300px;
+        line-height: 0;
+        margin-left: 23px;
+        margin-top: 30px;
+        overflow: hidden;
+        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg")
+    }
 
-.arrow-down {
-    width: 300px;
-    height: 300px;  
-    line-height: 0;
-    margin-left: 23px;
-    margin-top: 30px;
-    overflow: hidden;
-    background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg")
+    .arrow-down:after {
+        display: block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 171px solid white;
+        border-right: 142px solid white;
+        border-top: 271px solid transparent;
+        position: relative;
+    }
 
-}
+    .logo {
+        clear: both;
+        width: 274px;
+        height: 200px;
+        margin-top: -317px;
+        margin-left: 350px;
+    }
 
-.arrow-down:after {
-    display: block;
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 171px solid white;
-    border-right: 142px solid white;
-    border-top: 271px solid transparent;
-    position: relative;
-}
+    .arrow-up {
+        width: 300px;
+        height: 300px;
+        line-height: 0;
+        margin-top: -29px;
+        margin-bottom: 30px;
+        float: left;
+        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
+    }
 
-.arrow-up {
-    width: 300px;
-    height: 300px;
-    line-height: 0;
-    margin-top: -29px;
-    margin-bottom: 30px;
-    float: left;
-    background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
-}
+    .arrow-up:after {
+        display: block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 169px solid white;
+        border-right: 158px solid white;
+        border-bottom: 286px solid transparent;
+        position: relative;
+    }
 
+    .logo {
+        width: 274px;
+        height: 200px;
+        margin-top: -317px;
+        margin-left: 330px;
+    }
 
-.arrow-up:after {
-    display: block;
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 169px solid white;
-    border-right: 158px solid white;
-    border-bottom: 286px solid transparent;
-    position: relative;
+    .arrow-down2 {
+        width: 292px;
+        height: 198px;
+        line-height: 0;
+        margin-left: 226px;
+        margin-top: -20px;
+        overflow: hidden;
+        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
+        position: absolute;
+    }
 
-}
+    .arrow-down2:after {
+        display: block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 155px solid white;
+        border-right: 144px solid white;
+        border-top: 205px solid transparent;
+    }
 
-.logo {
-    width: 274px;
-    height: 200px;
-    margin-top: -317px;
-    margin-left: 330px;
-}
+    .btnHomePage {
+        float: right;
+        width: 410px;
+        margin-right: -9px;
+        margin-top: -104px;
+        background-color: #FA9D5F !important;
+    }
 
-.arrow-down2 {
-    width: 292px;
-    height: 198px;
-    line-height: 0;
-    margin-left: 226px;
-    margin-top: -20px;
-    overflow: hidden;
-    background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
-    position: absolute;
-}
+    .btn {
+        float: right;
+    }
 
-.arrow-down2:after {
-    display: block;
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 155px solid white;
-    border-right: 144px solid white;
-    border-top: 205px solid transparent;
+    .bing-img {
+        height: 320px;
+        width: 320px;
+    }
 
-}
+    .about {
+        margin-top: -224px;
+        color: black;
+        padding-left: 584px;
+        float: right;
+    }
+    /*
+.frontTriPic{
+    background: url(https://previews.123rf.com/images/amiloslava/amiloslava1401/amiloslava140100207/25198992-Seamless-pattern-with-handwriting-text-Stock-Vector-writing-handwriting-cursive.jpg);
+}*/
 
+    .mapSearch {
+        position: absolute;
+        top: 0;
+        z-index: 200;
+        left: 11px;
+        background-color: rgb(233, 220, 220);
+        opacity: .5;
+    }
 
-.btnHomePage {
-    float: right;
-    width: 410px;
-    margin-right: -9px;
-    margin-top: -104px;
-    background-color: #FA9D5F !important;
-}
+    .mapContainer {
+        position: relative;
+    }
 
-.about {
-    margin-top: -224px;
-    color: black;
-    padding-left: 584px;
-    float: right ;
-}
+    .searchBtn {
+        text-align: center;
+        margin-bottom: 3px;
+    }
 
+    .emptydiv {
+        margin-top: 50px;
+    }
 
-.searchBtn {
-    text-align: center;
-    margin-bottom: 3px;
-}
-
-.emptydiv {
-    margin-top: 50px;
-
-}
-
-.searchBar {
-    margin-left: 460px;
-    margin-top: 50px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .searchBar {
+        margin-left: 460px;
+        margin-top: 50px;
+    }
