@@ -79,18 +79,6 @@ $(document).ready(function () {
 
     // these are the buttons
 
-    $("#add-word").on("click", function (event) {
-
-        event.preventDefault();
-
-        var word = $("#word-input").val().trim();
-        word.push(word);
-
-        renderButtons();
-    });
-
-    renderButtons();
-
 
 
 
