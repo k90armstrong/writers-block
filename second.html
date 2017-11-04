@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Second Page</title>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
+
+<body>
+
+
+	<div class="container">
+
+		<div class="emptydiv"></div>
+
+		<div>
+			<div class="searchBtn">
+				<a class="button">Normal</a>
+				<a class="button">Funny</a>
+				<a class="button">Horse</a>
+				<a class="button">Food</a>
+				<a class="button">Dance</a>
+				<a class="button">Crime</a>
+				<a class="button">Disney</a>
+				<a class="button">Stars</a>
+			</div>
+
+			<div class="searchBtn">
+				<a class="button">This row needs to be a word they have typed in.</a>
+
+			</div>
+
+		</div>
+
+
+		<div class="searchBar">
+			<div class="row searchBtn">
+				<div class="input-field col s6" id="movie-input">
+					<input value="Word of Inspration" id="first_name2 add-word" type="text" class="validate">
+					<label class="active" for="first_name2"></label>
+				</div>
+			</div>
+		</div>
+
+		<div class="mapContainer">
+			<div class="row mapSearch">
+				<div class="input-field col s12">
+					<input id="mapSearch" type="text" class="validate">
+					<label class="active" for="mapSearch">Search City</label>
+				</div>
+			</div>
+			<div id="googleMap" style="width:100%; height:90vh;"></div>
+		</div>
+
+	</div>
+
+	<div class="container">
+
+		<div>
+			<!-- this is where the images/stuff goes -->
+		</div>
+
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	    crossorigin="anonymous"></script>
+	<script src="assets/javascript/main.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY2aMZMMV2WwEdBb0XbwBunGWZBkZgch4&callback=myMap"></script>
+</body>
+
+</html>

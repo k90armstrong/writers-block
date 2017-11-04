@@ -1,176 +1,108 @@
-
-function searchTemp() {
-
-  //Empty the html giphy-area after each search
-
-  $("#giphy-area").html("");
-
-  searchValue = $("#search").val().trim();
-
-  //Set queryURL for AJAX Request
-
-  var queryURL= "https://api.giphy.com/v1/gifs/search?q="+ searchValue +"&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
-
-  
-
-
- // https://images-api.nasa.gov  /search?q={q}
-  //AJAX Request
-
-  $.ajax({
-
-    url: queryURL,
-
-    method: 'GET',
-
-}).done((response) => {
-
-    console.log(response);
-
-    for(i = 0; i < response.data.length; i++){
-
-      //Add raiting and img to html
-
-      $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
-       "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original_still.url
-       + " class= 'gif-img'></div>");
-
-  };
-
-});
+// global map variables
+var map;
+var marker;
+var homeLocation = {
+    lat: 42.9,
+    lng: -101.8099
 };
-
-function search() {
-
-  //Empty the html giphy-area after each search
-
-  $("#giphy-area").html("");
-
-  searchValue = $("#search").val().trim();
-  console.log(searchValue);
-
-  pressTopicBtnGiphy(searchValue);
-  pressTopicBtnBing(searchValue);
-
-  //Clear #search
-
-  $("#search").val("")
-
-  //Run init()
-
-  // init();
-
-};
-
-function pressTopicBtnGiphy (searchValue) {
-
- var queryURL= "https://api.giphy.com/v1/gifs/search?q="+ searchValue +"&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
-
- $.ajax({
-
-    url: queryURL,
-
-    method: 'GET'
-
-}).done((response) => {
-
-    console.log(response);
-
-    for(i = 0; i < response.data.length; i++){
-
-      //Add rating and img to html
-
-      $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() 
-        + "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url
-        + " class= 'gif-img'></div>");
-
-  };
-
-});
-
-};
-
-function pressTopicBtnBing (searchValue) {
-
-   var queryURL= "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q="+ searchValue +"&count=10";
-
-
-   $.ajax({
-
-    url: queryURL,
-
-    beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","d18f5965cced4c3e82a8548bd6dab528"); //replace value with your own key
-            },
-
-
-            method: 'GET'
-
-        }).done((response) => {
-
-            console.log(response);
-
-            for(i = 0; i < response.value.length; i++){
-
-      //Add rating and img to html
-
-      $("#giphy-area").append("<div class= 'gif-div'><img data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl
-        + " class= 'bing-img'></div>");
-
-  };
-
-});
-
+// MAP FUCNTION HERE
+function myMap() {
+    var mapProp = {
+        zoom: 5,
+        disableDefaultUI: true
     };
+    map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    var latLng = getUserLocation();
+
+    google.maps.event.addListener(map, 'projection_changed', function () {
+
+        overlay = new google.maps.OverlayView();
+        overlay.draw = function () {};
+        overlay.setMap(map);
+    });
+    // map listeners
+    map.addListener('click', function (event) {
+        addMarker(event.latLng);
+    });
+}
+
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            var latLng = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            changeLocation(latLng);
+        }, (error) => {
+            // if user doesnt allow for the location info just start with the first index in the location array
+            var latLng = homeLocation;
+            changeLocation(latLng);
+        });
+    }
+}
+
+function changeLocation(latLng) {
+    map.setCenter({
+        lat: latLng.lat - .1,
+        lng: latLng.lng
+    })
+    var glatLang = new google.maps.LatLng(latLng.lat, latLng.lng);
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+    if (marker) {
+        marker.setMap(null);
+    }
+    marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+    // search an api for the spatial behaviors
+    var latLng = {
+        lat: location.lat(),
+        lng: location.lng()
+    };
+    console.log(latLng);
+    runSpatialAPI(latLng);
+
+}
+
+$(document).ready(function () {
+    console.log('hello world');
+
+    //   Materialize.updateTextFields();
+    // });
 
 
 
-//In creating each image, I added a data-name containing the gif url. Here I swap that with the still image url being used in the src.
+    // these are the buttons
 
-function changeImage() {
+    $("#add-word").on("click", function (event) {
 
-    var temp = $(this).attr("data-name");
+        event.preventDefault();
 
-    $(this).attr("data-name", $(this).attr("src"));
+        var word = $("#word-input").val().trim();
+        word.push(word);
 
-    $(this).attr("src", temp);
+        renderButtons();
+    });
 
-};
-
-
-
-
+    renderButtons();
 
 
 
-//=======================
 
-//MAIN PROCESS
-
-//=======================
-
-//Initialize on start
-
-// init();
-
-
-
-//When the Submit button is clicked the search function is called
-
-//$("#search-btn").on("click", search);
-$("#search-btn").on("click", search);
-
-//When the Country buttons are clicked, the presstopicBtn function is called
-
-$(document).on("click", ".topic-btn", pressTopicBtn);
-
-//When the gif images are clicked, changeImage function is called
-
-$(document).on("click", ".gif-img", changeImage);
+    // global variables
+    var twitterConsumerKey = "ajhJmNa7Mwe2OTXHtu7irdrlJ";
+    var twitterConsumerSecret = "wnMn2ohEHItsqQmcJLbbPGuPp0aGxFYFl1EtHQ3MjMnijKX4Gb";
+    var twitterConcat = twitterConsumerKey + ':' + twitterConsumerSecret;
+    var twitterBase64Encoded = btoa(twitterConcat);
 
 
     // functions___________________________________________________________________________
+
 
 
 
@@ -187,19 +119,172 @@ $(document).on("click", ".gif-img", changeImage);
 
 
     // prathima below here
+    function searchTemp() {
 
+        //Empty the html giphy-area after each search
+
+        $("#giphy-area").html("");
+
+        searchValue = $("#search").val().trim();
+
+        //Set queryURL for AJAX Request
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
+
+
+
+        // https://images-api.nasa.gov  /search?q={q}
+        //AJAX Request
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET',
+
+        }).done((response) => {
+
+            console.log(response);
+
+            for (i = 0; i < response.data.length; i++) {
+
+                //Add raiting and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
+                    "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original_still.url +
+                    " class= 'gif-img'></div>");
+
+            };
+
+        });
+    };
+
+    function search() {
+
+        //Empty the html giphy-area after each search
+
+        $("#giphy-area").html("");
+
+        searchValue = $("#search").val().trim();
+        console.log(searchValue);
+
+        pressTopicBtnGiphy(searchValue);
+        pressTopicBtnBing(searchValue);
+
+        //Clear #search
+
+        $("#search").val("")
+
+        //Run init()
+
+        // init();
+
+    };
+
+    function pressTopicBtnGiphy(searchValue) {
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET'
+
+        }).done((response) => {
+
+            console.log(response);
+
+            for (i = 0; i < response.data.length; i++) {
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
+                    "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url +
+                    " class= 'gif-img'></div>");
+
+            };
+
+        });
+
+    };
+
+    function pressTopicBtnBing(searchValue) {
+
+        var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=10";
+
+
+        $.ajax({
+
+            url: queryURL,
+
+            beforeSend: function (xhrObj) {
+                // Request headers
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "d18f5965cced4c3e82a8548bd6dab528"); //replace value with your own key
+            },
+
+
+            method: 'GET'
+
+        }).done((response) => {
+
+            console.log(response);
+
+            for (i = 0; i < response.value.length; i++) {
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'><img data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
+                    " class= 'bing-img'></div>");
+
+            };
+
+        });
+
+    };
+
+
+
+    //In creating each image, I added a data-name containing the gif url. 
+    //Here I swap that with the still image url being used in the src.
+    function changeImage() {
+
+        var temp = $(this).attr("data-name");
+
+        $(this).attr("data-name", $(this).attr("src"));
+
+        $(this).attr("src", temp);
+
+    };
+
+    // END PRATHIMA
 
     // kyle below here
-
+    function runSpatialAPI(location) {
+        // location = {lat: 909.5495, lng: 9303.543534}
+        var url = "";
+        var apiKey = "";
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
 
     // API CALLS END HERE_____________________________________________________________________
 
 
     // listeners______________________________________________________________________________
+    $("#search-btn").on("click", search);
+    $(document).on("click", ".topic-btn", pressTopicBtn);
+    $(document).on("click", ".gif-img", changeImage);
+
 
 
     // listeners end here ____________________________________________________________________
 
 
-  // start main process___________________________________________________________________________
-
+    // start main process___________________________________________________________________________
+});
