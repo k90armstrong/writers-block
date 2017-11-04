@@ -72,6 +72,28 @@ function addMarker(location) {
 $(document).ready(function () {
     console.log('hello world');
 
+  //   Materialize.updateTextFields();
+  // });
+
+
+
+// these are the buttons
+
+$("#add-word").on("click", function(event) {
+
+        event.preventDefault();
+
+        var word = $("#word-input").val().trim();
+        word.push(word);
+
+        renderButtons();
+      });
+
+      renderButtons();
+
+
+
+
     // global variables
     var twitterConsumerKey = "ajhJmNa7Mwe2OTXHtu7irdrlJ";
     var twitterConsumerSecret = "wnMn2ohEHItsqQmcJLbbPGuPp0aGxFYFl1EtHQ3MjMnijKX4Gb";
