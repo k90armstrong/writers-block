@@ -104,38 +104,42 @@ $(document).ready(function () {
     // API CALLS FUNCTIONS__________________________________________________________________
 
     // andrew below here
-
-    var title = "space+jam";
-    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=40e9cece";
-
-
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function (response) {
-        console.log(response);
-        console.log(response.poster);
-
-        // Creating a div to hold the movie
-        var movieDiv = $("<div class='movie'>");
-
-        // Retrieving the URL for the image
-        var imgURL = response.Poster;
-
-        // Creating an element to hold the image
-        var image = $("<img>").attr("src", imgURL);
-
-        // Appending the image
-        movieDiv.append(image);
-    });
+    function runOMDBAPI(searchValue) {
+        var title = searchValue;
+        var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=40e9cece";
 
 
-    $(document).on('click', 'button', function () {
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response);
+            console.log(response.poster);
+
+            // Creating a div to hold the movie
+            var movieDiv = $("<div class='movie'>");
+
+            // Retrieving the URL for the image
+            var imgURL = response.Poster;
+
+            // Creating an element to hold the image
+            var image = $("<img>").attr("src", imgURL);
+
+            // Appending the image
+            movieDiv.append(image);
+        });
+    }
+
+
+    function runSongAPI(searchValue) {
         // var type = $(this).data('type');
-        var type = "believer";
+        var type = searchValue;
         var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
-        $.ajax({ url: queryURL, method: 'GET' })
+        $.ajax({
+                url: queryURL,
+                method: 'GET'
+            })
             .done(function (response) {
                 console.log(response);
                 // if results are less than 10, change to length of what exists
@@ -177,9 +181,7 @@ $(document).ready(function () {
                     $(".track-rows").append(trackRow);
                 }
             });
-    })
-
-
+    }
 
 
     // prathima below here
@@ -281,6 +283,7 @@ $(document).ready(function () {
     function resetSearch() {
         //Empty the html giphy-area after each search
         $("#giphy-area").html("");
+        $('.tiles').empty();
     }
 
     // handlers for click and search
@@ -292,6 +295,8 @@ $(document).ready(function () {
         var searchTerm = $(this).text();
         runBingAPI(searchTerm);
         runGiphyAPI(searchTerm);
+        runSongAPI(searchTerm);
+        runOMDBAPI(searchTerm);
     }
 
     function searchHandler(event) {
@@ -303,6 +308,8 @@ $(document).ready(function () {
             var searchTerm = $('input').val().trim();
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
+            runSongAPI(searchTerm);
+            runOMDBAPI(searchTerm);
 
         }
     }
