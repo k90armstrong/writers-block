@@ -107,69 +107,7 @@ $(document).ready(function () {
 
 
     // prathima below here
-    function searchTemp() {
-
-        //Empty the html giphy-area after each search
-
-        $("#giphy-area").html("");
-
-        searchValue = $("#search").val().trim();
-
-        //Set queryURL for AJAX Request
-
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
-
-
-
-        // https://images-api.nasa.gov  /search?q={q}
-        //AJAX Request
-
-        $.ajax({
-
-            url: queryURL,
-
-            method: 'GET',
-
-        }).done((response) => {
-
-            console.log(response);
-
-            for (i = 0; i < response.data.length; i++) {
-
-                //Add raiting and img to html
-
-                $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
-                    "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original_still.url +
-                    " class= 'gif-img'></div>");
-
-            };
-
-        });
-    };
-
-    function search() {
-
-        //Empty the html giphy-area after each search
-
-        $("#giphy-area").html("");
-
-        searchValue = $("#search").val().trim();
-        console.log(searchValue);
-
-        pressTopicBtnGiphy(searchValue);
-        pressTopicBtnBing(searchValue);
-
-        //Clear #search
-
-        $("#search").val("")
-
-        //Run init()
-
-        // init();
-
-    };
-
-    function pressTopicBtnGiphy(searchValue) {
+    function runGiphyAPI(searchValue) {
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
 
@@ -197,7 +135,8 @@ $(document).ready(function () {
 
     };
 
-    function pressTopicBtnBing(searchValue) {
+    // bing api
+    function runBingAPI(searchValue) {
 
         var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=10";
 
@@ -232,7 +171,6 @@ $(document).ready(function () {
     };
 
 
-
     //In creating each image, I added a data-name containing the gif url. 
     //Here I swap that with the still image url being used in the src.
     function changeImage() {
@@ -263,10 +201,40 @@ $(document).ready(function () {
 
     // API CALLS END HERE_____________________________________________________________________
 
+    // view functions
+    function resetSearch() {
+        //Empty the html giphy-area after each search
+        $("#giphy-area").html("");
+    }
+
+    // handlers for click and search
+    function pressTopicBtnHandler(event) {
+        // resest all views
+        resetSearch();
+        // initialize search for ALL APIS!!!!
+        // here is the search term that all apis will use
+        var searchTerm = $(this).text();
+        runBingAPI(searchTerm);
+        runGiphyAPI(searchTerm);
+    }
+
+    function searchHandler(event) {
+        if (event.key === 'Enter') {
+            // resest all views
+            resetSearch();
+            // initialize search for ALL APIS!!!!
+            // here is the search term that all apis will use
+            var searchTerm = $('input').val().trim();
+            runBingAPI(searchTerm);
+            runGiphyAPI(searchTerm);
+
+        }
+    }
+    // End of handlers for click and search
 
     // listeners______________________________________________________________________________
-    $("#search-btn").on("click", search);
-    $(document).on("click", ".topic-btn", pressTopicBtn);
+    $("input").on("keypress", searchHandler);
+    $(document).on("click", ".topic-btn", pressTopicBtnHandler);
     $(document).on("click", ".gif-img", changeImage);
 
 
