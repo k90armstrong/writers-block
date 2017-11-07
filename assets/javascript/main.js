@@ -193,9 +193,8 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
-                    "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url +
-                    " class= 'gif-img'></div>");
+                $("#giphy-area").append("<img class='grid-item' data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url +
+                    " class= 'gif-img'>");
 
             };
 
