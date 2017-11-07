@@ -5,7 +5,7 @@ var homeLocation = {
     lat: 42.9,
     lng: -101.8099
 };
-// MAP FUCNTION HERE
+// MAP FUNCTION HERE
 function myMap() {
     var mapProp = {
         zoom: 5,
@@ -64,19 +64,76 @@ function addMarker(location) {
         lat: location.lat(),
         lng: location.lng()
     };
-    console.log(latLng);
-    runSpatialAPI(latLng);
+    runMapAPI(latLng);
+}
 
+function runMapAPI(location) {
+    var locString = location.lat + ',';
+    locString += location.lng;
+    var url = "https://www.googleapis.com/youtube/v3/search";
+    var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
+    url += '?' + $.param({
+        maxResults: '5',
+        part: 'snippet',
+        location: locString,
+        locationRadius: '50mi',
+        key: apiKey,
+        type: 'video'
+    });
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (res) {
+            console.log(res);
+        }
+    });
+}
+// api to create links for the song table
+function runSongTubeAPI(title, $anchor) {
+    var url = "https://www.googleapis.com/youtube/v3/search";
+    var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
+    url += '?' + $.param({
+        maxResults: '1',
+        part: 'snippet',
+        key: apiKey,
+        type: 'video',
+        q: title
+    });
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (response) {
+            var videoId = response.items[0].id.videoId;
+            console.log(response);
+            $anchor.attr('href', 'https://www.youtube.com/watch?v=' + videoId);
+            $anchor.attr("target", "_blank");
+        },
+        error: function (res) {
+            console.log(res);
+        }
+    });
 }
 
 $(document).ready(function () {
     console.log('hello world');
 
+    //   Materialize.updateTextFields();
+    // });
+
+
+
+    // these are the buttons
+
+
+
+
     // global variables
-    var twitterConsumerKey = "ajhJmNa7Mwe2OTXHtu7irdrlJ";
-    var twitterConsumerSecret = "wnMn2ohEHItsqQmcJLbbPGuPp0aGxFYFl1EtHQ3MjMnijKX4Gb";
-    var twitterConcat = twitterConsumerKey + ':' + twitterConsumerSecret;
-    var twitterBase64Encoded = btoa(twitterConcat);
+
 
 
     // functions___________________________________________________________________________
@@ -162,10 +219,13 @@ $(document).ready(function () {
                     var trackRow = $("<tr>");
                     var artistCell = $("<td>");
                     var trackTitleCell = $("<td>");
+                    var $anchor = $('<a>');
                     artistCell.text(track.artist);
-                    trackTitleCell.text(track.name);
-                    trackRow.append(artistCell);
+                    runSongTubeAPI(track.name, $anchor);
+                    $anchor.text(track.name);
+                    trackTitleCell.append($anchor);
                     trackRow.append(trackTitleCell);
+                    trackRow.append(artistCell);
 
                     // append to table body
                     $(".track-rows").append(trackRow);
