@@ -182,6 +182,40 @@ $(document).ready(function () {
         $(this).attr("src", temp);
 
     };
+    function runwordAPI(searchValue) {
+
+        var queryURL = "https://api.datamuse.com/words?ml="+searchValue +"&max=10";
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET'
+
+        }).done((response) => {
+
+            for (i = 0; i < response.length; i++) {
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'> Synonym: " + response[i].word + 
+                    "</div>");
+
+            };
+
+        });
+
+    };
+
+
+
+
+
+
+
+
+
+
 
     // END PRATHIMA
 
@@ -225,8 +259,10 @@ $(document).ready(function () {
             // initialize search for ALL APIS!!!!
             // here is the search term that all apis will use
             var searchTerm = $('input').val().trim();
+            alert(searchTerm);
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
+            runwordAPI(searchTerm);
 
         }
     }
@@ -234,6 +270,7 @@ $(document).ready(function () {
 
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
+   // $('#first_name2\\ add-word').on("keypress", searchHandler);
     $(document).on("click", ".topic-btn", pressTopicBtnHandler);
     $(document).on("click", ".gif-img", changeImage);
 
