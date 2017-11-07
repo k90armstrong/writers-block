@@ -228,8 +228,8 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#giphy-area").append("<div class= 'gif-div'><img data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
-                    " class= 'bing-img'></div>");
+                $("#giphy-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
+                    " class= 'bing-img'>");
 
             };
 
