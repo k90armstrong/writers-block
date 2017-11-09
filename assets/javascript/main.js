@@ -437,7 +437,7 @@ $(document).ready(function () {
             // initialize search for ALL APIS!!!!
             // here is the search term that all apis will use
             var searchTerm = $('input').val().trim();
-            alert(searchTerm);
+            // alert(searchTerm);
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
 
