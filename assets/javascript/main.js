@@ -86,6 +86,15 @@ function runMapAPI(location) {
         url: url,
         success: function (response) {
             console.log(response);
+            var videos = response.items;
+            for (var i = 0; i < videos.length; i++) {
+                var $iframe = $('<iframe>');
+                $iframe.css('width', '420');
+                $iframe.css('height', '315');
+                $iframe.attr('src', 'https://www.youtube.com/embed/' + videos[i].id.videoId);
+                $iframe.addClass('grid-item');
+                $('#giphy-area').append($iframe);
+            }
         },
         error: function (res) {
             console.log(res);
