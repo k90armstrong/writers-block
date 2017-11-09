@@ -5,7 +5,7 @@ var homeLocation = {
     lat: 42.9,
     lng: -101.8099
 };
-// MAP FUCNTION HERE
+// MAP FUNCTION HERE
 function myMap() {
     var mapProp = {
         zoom: 5,
@@ -64,9 +64,68 @@ function addMarker(location) {
         lat: location.lat(),
         lng: location.lng()
     };
-    console.log(latLng);
-    runSpatialAPI(latLng);
+    runMapAPI(latLng);
+}
 
+function runMapAPI(location) {
+    var locString = location.lat + ',';
+    locString += location.lng;
+    var url = "https://www.googleapis.com/youtube/v3/search";
+    var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
+    url += '?' + $.param({
+        maxResults: '5',
+        part: 'snippet',
+        location: locString,
+        locationRadius: '50mi',
+        key: apiKey,
+        type: 'video'
+    });
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (response) {
+            console.log(response);
+            var videos = response.items;
+            for (var i = 0; i < videos.length; i++) {
+                var $iframe = $('<iframe>');
+                $iframe.css('width', '420');
+                $iframe.css('height', '315');
+                $iframe.attr('src', 'https://www.youtube.com/embed/' + videos[i].id.videoId);
+                $iframe.addClass('grid-item');
+                $('#giphy-area').append($iframe);
+            }
+        },
+        error: function (res) {
+            console.log(res);
+        }
+    });
+}
+// api to create links for the song table
+function runSongTubeAPI(title, $anchor) {
+    var url = "https://www.googleapis.com/youtube/v3/search";
+    var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
+    url += '?' + $.param({
+        maxResults: '1',
+        part: 'snippet',
+        key: apiKey,
+        type: 'video',
+        q: title
+    });
+
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (response) {
+            var videoId = response.items[0].id.videoId;
+            console.log(response);
+            $anchor.attr('href', 'https://www.youtube.com/watch?v=' + videoId);
+            $anchor.attr("target", "_blank");
+        },
+        error: function (res) {
+            console.log(res);
+        }
+    });
 }
 
 $(document).ready(function () {
@@ -83,10 +142,7 @@ $(document).ready(function () {
 
 
     // global variables
-    var twitterConsumerKey = "ajhJmNa7Mwe2OTXHtu7irdrlJ";
-    var twitterConsumerSecret = "wnMn2ohEHItsqQmcJLbbPGuPp0aGxFYFl1EtHQ3MjMnijKX4Gb";
-    var twitterConcat = twitterConsumerKey + ':' + twitterConsumerSecret;
-    var twitterBase64Encoded = btoa(twitterConcat);
+
 
 
     // functions___________________________________________________________________________
@@ -104,6 +160,87 @@ $(document).ready(function () {
     // API CALLS FUNCTIONS__________________________________________________________________
 
     // andrew below here
+    function runOMDBAPI(searchValue) {
+        var title = searchValue;
+        var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=40e9cece";
+
+
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function (response) {
+            console.log(response);
+            console.log(response.poster);
+
+            // Creating a div to hold the movie
+            var movieDiv = $("<div class='movie'>");
+
+            // Retrieving the URL for the image
+            var imgURL = response.Poster;
+
+            // Creating an element to hold the image
+            var image = $("<img>").attr("src", imgURL);
+
+            // Appending the image
+            movieDiv.append(image);
+        });
+    }
+
+
+    function runSongAPI(searchValue) {
+        // var type = $(this).data('type');
+        var type = searchValue;
+        var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
+        $.ajax({
+                url: queryURL,
+                method: 'GET'
+            })
+            .done(function (response) {
+                console.log(response);
+                // if results are less than 10, change to length of what exists
+
+                var tracks = response.results.trackmatches.track;
+
+                // create 
+
+                var trackTile = $(`<div class='col-md-3 tile'>
+                            <table>
+                            <thead>
+                                <tr>
+                                    <td>Track</td>
+                                    <td>Artist</td>
+                                </tr>
+                            </thead>
+                            <tbody class='track-rows'>
+                            </tbody>
+                    </table>
+                </div>`);
+
+                $(".tiles").append(trackTile);
+
+
+
+                for (var i = 0; i < 10; i++) {
+                    var track = tracks[i];
+                    console.log(track);
+
+                    var trackRow = $("<tr>");
+                    var artistCell = $("<td>");
+                    var trackTitleCell = $("<td>");
+                    var $anchor = $('<a>');
+                    artistCell.text(track.artist);
+                    runSongTubeAPI(track.name, $anchor);
+                    $anchor.text(track.name);
+                    trackTitleCell.append($anchor);
+                    trackRow.append(trackTitleCell);
+                    trackRow.append(artistCell);
+
+                    // append to table body
+                    $(".track-rows").append(trackRow);
+                }
+            });
+    }
 
 
     // prathima below here
@@ -125,9 +262,8 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#giphy-area").append("<div class= 'gif-div'>Rating: " + response.data[i].rating.toUpperCase() +
-                    "<br>" + "<img data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url +
-                    " class= 'gif-img'></div>");
+                $("#giphy-area").append("<img class='grid-item' data-name= " + response.data[i].images.original.url + " src= " + response.data[i].images.original.url +
+                    " class= 'gif-img'>");
 
             };
 
@@ -161,8 +297,8 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#giphy-area").append("<div class= 'gif-div'><img data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
-                    " class= 'bing-img'></div>");
+                $("#giphy-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
+                    " class= 'bing-img'>");
 
             };
 
@@ -278,6 +414,7 @@ $(document).ready(function () {
     function resetSearch() {
         //Empty the html giphy-area after each search
         $("#giphy-area").html("");
+        $('.tiles').empty();
     }
 
     // handlers for click and search
@@ -289,6 +426,8 @@ $(document).ready(function () {
         var searchTerm = $(this).text();
         runBingAPI(searchTerm);
         runGiphyAPI(searchTerm);
+        runSongAPI(searchTerm);
+        runOMDBAPI(searchTerm);
     }
 
     function searchHandler(event) {
@@ -301,8 +440,13 @@ $(document).ready(function () {
             alert(searchTerm);
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
+
             runwordAPI(searchTerm);
             runquoteAPI(searchTerm);
+
+            runSongAPI(searchTerm);
+            runOMDBAPI(searchTerm);
+
 
         }
     }
