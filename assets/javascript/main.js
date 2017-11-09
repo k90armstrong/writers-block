@@ -206,6 +206,45 @@ $(document).ready(function () {
         });
 
     };
+ 
+    function runquoteAPI(searchValue) {
+
+        var queryURL = "http://quotes.rest/qod.json";
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET'
+
+        }).done((response) => {
+            // console.log(url);
+            var quotes = response.contents.quotes;
+
+            for (i = 0; i < quotes.length; i++) {
+                console.log(quotes[i].quote);
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'> quotes: " + quotes[i].quote + 
+                    "</div>");
+
+            };
+
+        });
+
+    };
+
+    
+
+
+
+
+
+
+
+
+
 
 
 
@@ -263,6 +302,7 @@ $(document).ready(function () {
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
             runwordAPI(searchTerm);
+            runquoteAPI(searchTerm);
 
         }
     }
@@ -271,8 +311,8 @@ $(document).ready(function () {
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
    // $('#first_name2\\ add-word').on("keypress", searchHandler);
-    $(document).on("click", ".topic-btn", pressTopicBtnHandler);
-    $(document).on("click", ".gif-img", changeImage);
+   $(document).on("click", ".topic-btn", pressTopicBtnHandler);
+   $(document).on("click", ".gif-img", changeImage);
 
 
 
