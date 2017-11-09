@@ -237,7 +237,7 @@ $(document).ready(function () {
     // prathima below here
     function runGiphyAPI(searchValue) {
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=20";
 
         $.ajax({
 
@@ -265,7 +265,7 @@ $(document).ready(function () {
     // bing api
     function runBingAPI(searchValue) {
 
-        var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=10";
+        var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=20";
 
 
         $.ajax({
@@ -363,6 +363,9 @@ $(document).ready(function () {
         }
     }
     // End of handlers for click and search
+
+
+    
 
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
