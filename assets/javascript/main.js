@@ -341,7 +341,7 @@ $(document).ready(function () {
                 $item.text(response[i].word);
                 $container.append($item);
             };
-            $("#giphy-area").append($container);
+            $("#word-area").append($container);
         });
 
     };
@@ -374,7 +374,7 @@ $(document).ready(function () {
                 $container.append($quote);
 
             };
-            $("#giphy-area").append($container);
+            $("#quote-area").append($container);
 
         });
 

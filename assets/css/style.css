@@ -88,6 +88,13 @@
     float: right;
 }
 
+.button {
+    padding-left: 2.0em;
+    padding-right: 2.0em;
+    margin-left: 9px;
+
+}
+
 .bing-img {
     height: 320px;
     width: 320px;
@@ -114,8 +121,10 @@
 }
 
 .searchBtn {
-    text-align: center;
     margin-bottom: 3px;
+    text-align: center;
+    padding-left: 2.0em !important;
+    padding-right: 2.0em !important;
 }
 
 .emptydiv {
@@ -123,20 +132,27 @@
 }
 
 .searchBar {
-    margin-left: 460px;
+    margin-left: 368px;
     margin-top: 50px;
 }
 
+
 .grid-item {
     margin: 3px;
-    background-color: #FA9D5F;
+    background-color: #EAEAEA;
     width: 250px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px;
 }
 
 img {
     width: 30%;
+}
+
+.secondpgLogo {
+    margin-top: 20px;
+    margin-left: 514px;
+    width: 22%;
 }
 
 #giphy-area {
@@ -151,3 +167,56 @@ img {
 .synonym {
     margin-left: 10px;
 }
+
+.quote {
+    float: right;
+    margin-right: 400px;
+    margin-top: -250px;
+
+}
+
+.word-area {
+    clear: both;
+    margin-left: 400px;
+}
+
+.discription {
+    font-family: 'Lora', serif;
+    color: gray;
+    font-size: 25px;
+    text-align: center; 
+    margin-top: 33px; 
+    margin-bottom: 64px;
+}
+
+.bottomBorder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+    margin-top: 8px;
+    margin-bottom: 9px;
+    width: 993px;
+    margin-left: 166px;
+}
+
+.topBorder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+    margin-top: -10px;
+    margin-bottom: 9px;
+    width: 993px;
+    margin-left: 166px;
+}
+
+.mapFontTag {
+    margin-top: 115px;
+    font-family: 'Lora', serif;
+    color: gray;
+    font-size: 15px;
+    text-align: center;
+
+}
+
+
+
