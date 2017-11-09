@@ -204,7 +204,7 @@ $(document).ready(function () {
 
                 // create 
 
-                var trackTile = $(`<div class='col-md-3 tile'>
+                var trackTile = $(`<div class='grid-item col-md-3 tile'>
                             <table>
                             <thead>
                                 <tr>
@@ -318,9 +318,10 @@ $(document).ready(function () {
         $(this).attr("src", temp);
 
     };
+
     function runwordAPI(searchValue) {
 
-        var queryURL = "https://api.datamuse.com/words?ml="+searchValue +"&max=10";
+        var queryURL = "https://api.datamuse.com/words?ml=" + searchValue + "&max=10";
 
         $.ajax({
 
@@ -330,19 +331,21 @@ $(document).ready(function () {
 
         }).done((response) => {
 
+            var $title = $('<p>').addClass('subtitle is-paddingless');
+            $title.text('Synonyms');
+            var $container = $('<div>').addClass('grid-item');
+            $container.append($title);
             for (i = 0; i < response.length; i++) {
-
                 //Add rating and img to html
-
-                $("#giphy-area").append("<div class= 'gif-div'> Synonym: " + response[i].word + 
-                    "</div>");
-
+                var $item = $('<div>').addClass('synonym');
+                $item.text(response[i].word);
+                $container.append($item);
             };
-
+            $("#giphy-area").append($container);
         });
 
     };
- 
+
     function runquoteAPI(searchValue) {
 
         var queryURL = "http://quotes.rest/qod.json";
@@ -356,22 +359,28 @@ $(document).ready(function () {
         }).done((response) => {
             // console.log(url);
             var quotes = response.contents.quotes;
+            var $title = $('<p>').addClass('subtitle is-paddingless cursive');
+            $title.text('Quote of the Day');
+            var $container = $('<div>').addClass('grid-item');
+            $container.append($title);
 
             for (i = 0; i < quotes.length; i++) {
                 console.log(quotes[i].quote);
 
                 //Add rating and img to html
-
-                $("#giphy-area").append("<div class= 'gif-div'> quotes: " + quotes[i].quote + 
-                    "</div>");
+                var $quote = $('<div>');
+                $quote.addClass('cursive');
+                $quote.text(quotes[i].quote);
+                $container.append($quote);
 
             };
+            $("#giphy-area").append($container);
 
         });
 
     };
 
-    
+
 
 
 
@@ -426,6 +435,8 @@ $(document).ready(function () {
         var searchTerm = $(this).text();
         runBingAPI(searchTerm);
         runGiphyAPI(searchTerm);
+        runwordAPI(searchTerm);
+        runquoteAPI(searchTerm);
         runSongAPI(searchTerm);
         runOMDBAPI(searchTerm);
     }
@@ -437,13 +448,10 @@ $(document).ready(function () {
             // initialize search for ALL APIS!!!!
             // here is the search term that all apis will use
             var searchTerm = $('input').val().trim();
-            // alert(searchTerm);
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
-
             runwordAPI(searchTerm);
             runquoteAPI(searchTerm);
-
             runSongAPI(searchTerm);
             runOMDBAPI(searchTerm);
 
@@ -453,13 +461,13 @@ $(document).ready(function () {
     // End of handlers for click and search
 
 
-    
+
 
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
-   // $('#first_name2\\ add-word').on("keypress", searchHandler);
-   $(document).on("click", ".topic-btn", pressTopicBtnHandler);
-   $(document).on("click", ".gif-img", changeImage);
+    // $('#first_name2\\ add-word').on("keypress", searchHandler);
+    $(document).on("click", ".topic-btn", pressTopicBtnHandler);
+    $(document).on("click", ".gif-img", changeImage);
 
 
 
