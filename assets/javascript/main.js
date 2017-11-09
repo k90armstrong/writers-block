@@ -86,6 +86,15 @@ function runMapAPI(location) {
         url: url,
         success: function (response) {
             console.log(response);
+            var videos = response.items;
+            for (var i = 0; i < videos.length; i++) {
+                var $iframe = $('<iframe>');
+                $iframe.css('width', '420');
+                $iframe.css('height', '315');
+                $iframe.attr('src', 'https://www.youtube.com/embed/' + videos[i].id.videoId);
+                $iframe.addClass('grid-item');
+                $('#giphy-area').append($iframe);
+            }
         },
         error: function (res) {
             console.log(res);
@@ -309,6 +318,79 @@ $(document).ready(function () {
         $(this).attr("src", temp);
 
     };
+    function runwordAPI(searchValue) {
+
+        var queryURL = "https://api.datamuse.com/words?ml="+searchValue +"&max=10";
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET'
+
+        }).done((response) => {
+
+            for (i = 0; i < response.length; i++) {
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'> Synonym: " + response[i].word + 
+                    "</div>");
+
+            };
+
+        });
+
+    };
+ 
+    function runquoteAPI(searchValue) {
+
+        var queryURL = "http://quotes.rest/qod.json";
+
+        $.ajax({
+
+            url: queryURL,
+
+            method: 'GET'
+
+        }).done((response) => {
+            // console.log(url);
+            var quotes = response.contents.quotes;
+
+            for (i = 0; i < quotes.length; i++) {
+                console.log(quotes[i].quote);
+
+                //Add rating and img to html
+
+                $("#giphy-area").append("<div class= 'gif-div'> quotes: " + quotes[i].quote + 
+                    "</div>");
+
+            };
+
+        });
+
+    };
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // END PRATHIMA
 
@@ -355,10 +437,16 @@ $(document).ready(function () {
             // initialize search for ALL APIS!!!!
             // here is the search term that all apis will use
             var searchTerm = $('input').val().trim();
+            alert(searchTerm);
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
+
+            runwordAPI(searchTerm);
+            runquoteAPI(searchTerm);
+
             runSongAPI(searchTerm);
             runOMDBAPI(searchTerm);
+
 
         }
     }
@@ -369,8 +457,9 @@ $(document).ready(function () {
 
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
-    $(document).on("click", ".topic-btn", pressTopicBtnHandler);
-    $(document).on("click", ".gif-img", changeImage);
+   // $('#first_name2\\ add-word').on("keypress", searchHandler);
+   $(document).on("click", ".topic-btn", pressTopicBtnHandler);
+   $(document).on("click", ".gif-img", changeImage);
 
 
 
