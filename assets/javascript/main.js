@@ -76,7 +76,7 @@ function runMapAPI(location) {
         maxResults: '5',
         part: 'snippet',
         location: locString,
-        locationRadius: '50mi',
+        locationRadius: '10mi',
         key: apiKey,
         type: 'video'
     });
@@ -442,6 +442,17 @@ $(document).ready(function () {
     }
 
     function searchHandler(event) {
+        var notAcceptableKeys = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '|', '\\', ',', '>', '<', '?', ':', ';'];
+        for (var char of notAcceptableKeys) {
+            if (event.key === char) {
+                var input = $('input').val().split('');
+                input.pop();
+                var newInput = input.join('');
+                // $('input').val(newInput);
+                Materialize.toast('Special charachter might not return anything!', 4000);
+                return
+            }
+        }
         if (event.key === 'Enter') {
             // resest all views
             resetSearch();
