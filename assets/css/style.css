@@ -143,6 +143,8 @@
     width: 250px;
     border-radius: 5px;
     padding: 2px;
+    text-align: center;
+
 }
 
 img {
@@ -155,9 +157,7 @@ img {
     width: 22%;
 }
 
-#giphy-area {
-    margin-left: 97px;
-}
+
 
 .cursive {
     font-family: 'Satisfy', cursive;
@@ -169,14 +169,12 @@ img {
 }
 
 .quote {
-    float: right;
     margin-right: 400px;
     margin-top: -250px;
 
 }
 
 .word-area {
-    clear: both;
     margin-left: 400px;
 }
 
@@ -216,6 +214,24 @@ img {
     font-size: 15px;
     text-align: center;
 
+}
+
+.giphy-area-container {
+    display: flex;
+}
+
+.flex-area {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.imgHeight {
+    height: 200px
+}
+
+.map-area-container {
+    display: flex;
 }
 
 

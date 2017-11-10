@@ -73,7 +73,7 @@ function runMapAPI(location) {
     var url = "https://www.googleapis.com/youtube/v3/search";
     var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
     url += '?' + $.param({
-        maxResults: '5',
+        maxResults: '6',
         part: 'snippet',
         location: locString,
         locationRadius: '50mi',
@@ -93,7 +93,7 @@ function runMapAPI(location) {
                 $iframe.css('height', '315');
                 $iframe.attr('src', 'https://www.youtube.com/embed/' + videos[i].id.videoId);
                 $iframe.addClass('grid-item');
-                $('#giphy-area').append($iframe);
+                $('#map-area').append($iframe);
             }
         },
         error: function (res) {
@@ -297,7 +297,7 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#giphy-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
+                $("#pic-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
                     " class= 'bing-img'>");
 
             };
@@ -341,7 +341,8 @@ $(document).ready(function () {
                 $item.text(response[i].word);
                 $container.append($item);
             };
-            $("#word-area").append($container);
+            $("#word-area").html($container);
+            // $("#word-area").append($container);
         });
 
     };
@@ -374,7 +375,7 @@ $(document).ready(function () {
                 $container.append($quote);
 
             };
-            $("#quote-area").append($container);
+            $("#quote-area").html($container);
 
         });
 
