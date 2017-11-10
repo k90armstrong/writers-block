@@ -73,7 +73,7 @@ function runMapAPI(location) {
     var url = "https://www.googleapis.com/youtube/v3/search";
     var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
     url += '?' + $.param({
-        maxResults: '6',
+        maxResults: '',
         part: 'snippet',
         location: locString,
         locationRadius: '50mi',
@@ -297,7 +297,7 @@ $(document).ready(function () {
 
                 //Add rating and img to html
 
-                $("#pic-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
+                $("#giphy-area").append("<img class='grid-item' data-name= " + response.value[i].name + " src= " + response.value[i].contentUrl +
                     " class= 'bing-img'>");
 
             };
