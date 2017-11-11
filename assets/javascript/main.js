@@ -73,10 +73,10 @@ function runMapAPI(location) {
     var url = "https://www.googleapis.com/youtube/v3/search";
     var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
     url += '?' + $.param({
-        maxResults: '5',
+        maxResults: '6',
         part: 'snippet',
         location: locString,
-        locationRadius: '50mi',
+        locationRadius: '10mi',
         key: apiKey,
         type: 'video'
     });
@@ -93,7 +93,7 @@ function runMapAPI(location) {
                 $iframe.css('height', '315');
                 $iframe.attr('src', 'https://www.youtube.com/embed/' + videos[i].id.videoId);
                 $iframe.addClass('grid-item');
-                $('#giphy-area').append($iframe);
+                $('#map-area').append($iframe);
             }
         },
         error: function (res) {
@@ -191,7 +191,7 @@ $(document).ready(function () {
     function runSongAPI(searchValue) {
         // var type = $(this).data('type');
         var type = searchValue;
-        var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
+        var queryURL = 'https://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
         $.ajax({
                 url: queryURL,
                 method: 'GET'
@@ -204,7 +204,7 @@ $(document).ready(function () {
 
                 // create 
 
-                var trackTile = $(`<div class='col-md-3 tile'>
+                var trackTile = $(`<div class='grid-item col-md-3 tile'>
                             <table>
                             <thead>
                                 <tr>
@@ -246,7 +246,7 @@ $(document).ready(function () {
     // prathima below here
     function runGiphyAPI(searchValue) {
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue + "&api_key=XTD2QIleof4xLyh8zHWCGfA1OExJXaGZ&limit=20";
 
         $.ajax({
 
@@ -274,7 +274,7 @@ $(document).ready(function () {
     // bing api
     function runBingAPI(searchValue) {
 
-        var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=10";
+        var queryURL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=" + searchValue + "&count=20";
 
 
         $.ajax({
@@ -318,9 +318,10 @@ $(document).ready(function () {
         $(this).attr("src", temp);
 
     };
+
     function runwordAPI(searchValue) {
 
-        var queryURL = "https://api.datamuse.com/words?ml="+searchValue +"&max=10";
+        var queryURL = "https://api.datamuse.com/words?ml=" + searchValue + "&max=10";
 
         $.ajax({
 
@@ -330,22 +331,25 @@ $(document).ready(function () {
 
         }).done((response) => {
 
+            var $title = $('<p>').addClass('subtitle is-paddingless');
+            $title.text('Synonyms');
+            var $container = $('<div>').addClass('grid-item');
+            $container.append($title);
             for (i = 0; i < response.length; i++) {
-
                 //Add rating and img to html
-
-                $("#giphy-area").append("<div class= 'gif-div'> Synonym: " + response[i].word + 
-                    "</div>");
-
+                var $item = $('<div>').addClass('synonym');
+                $item.text(response[i].word);
+                $container.append($item);
             };
-
+            $("#word-area").html($container);
+            // $("#word-area").append($container);
         });
 
     };
- 
+
     function runquoteAPI(searchValue) {
 
-        var queryURL = "http://quotes.rest/qod.json";
+        var queryURL = "https://quotes.rest/qod.json";
 
         $.ajax({
 
@@ -356,22 +360,28 @@ $(document).ready(function () {
         }).done((response) => {
             // console.log(url);
             var quotes = response.contents.quotes;
+            var $title = $('<p>').addClass('subtitle is-paddingless cursive');
+            $title.text('Quote of the Day');
+            var $container = $('<div>').addClass('grid-item');
+            $container.append($title);
 
             for (i = 0; i < quotes.length; i++) {
                 console.log(quotes[i].quote);
 
                 //Add rating and img to html
-
-                $("#giphy-area").append("<div class= 'gif-div'> quotes: " + quotes[i].quote + 
-                    "</div>");
+                var $quote = $('<div>');
+                $quote.addClass('cursive');
+                $quote.text(quotes[i].quote);
+                $container.append($quote);
 
             };
+            $("#quote-area").html($container);
 
         });
 
     };
 
-    
+
 
 
 
@@ -426,24 +436,38 @@ $(document).ready(function () {
         var searchTerm = $(this).text();
         runBingAPI(searchTerm);
         runGiphyAPI(searchTerm);
+        runwordAPI(searchTerm);
+        runquoteAPI(searchTerm);
         runSongAPI(searchTerm);
         runOMDBAPI(searchTerm);
     }
 
     function searchHandler(event) {
+        var notAcceptableKeys = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '|', '\\', ',', '>', '<', '?', ':', ';'];
+        for (var char of notAcceptableKeys) {
+            if (event.key === char) {
+                var input = $('input').val().split('');
+                input.pop();
+                var newInput = input.join('');
+                // $('input').val(newInput);
+                Materialize.toast('Special charachter might not return anything!', 4000);
+                return
+            }
+        }
         if (event.key === 'Enter') {
             // resest all views
             resetSearch();
             // initialize search for ALL APIS!!!!
             // here is the search term that all apis will use
             var searchTerm = $('input').val().trim();
+<<<<<<< HEAD
             
+=======
+>>>>>>> c4637ba77c4d7f06d9c555721422c0d6b2e81ef5
             runBingAPI(searchTerm);
             runGiphyAPI(searchTerm);
-
             runwordAPI(searchTerm);
             runquoteAPI(searchTerm);
-
             runSongAPI(searchTerm);
             runOMDBAPI(searchTerm);
 
@@ -452,11 +476,14 @@ $(document).ready(function () {
     }
     // End of handlers for click and search
 
+
+
+
     // listeners______________________________________________________________________________
     $("input").on("keypress", searchHandler);
-   // $('#first_name2\\ add-word').on("keypress", searchHandler);
-   $(document).on("click", ".topic-btn", pressTopicBtnHandler);
-   $(document).on("click", ".gif-img", changeImage);
+    // $('#first_name2\\ add-word').on("keypress", searchHandler);
+    $(document).on("click", ".topic-btn", pressTopicBtnHandler);
+    $(document).on("click", ".gif-img", changeImage);
 
 
 

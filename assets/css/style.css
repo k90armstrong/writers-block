@@ -1,164 +1,230 @@
-    /*.arrows {
-  width: 0;
-  height: 0;
-  text-indent: -9999px;
-  border-right: 80px solid white;
-  border-bottom: 130px solid transparent;
-  border-left: 80px solid white;
+.arrow-down {
+    width: 300px;
+    height: 300px;
+    line-height: 0;
+    margin-left: 23px;
+    margin-top: 30px;
+    overflow: hidden;
     background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg")
-}*/
+}
 
-    .arrow-down {
-        width: 300px;
-        height: 300px;
-        line-height: 0;
-        margin-left: 23px;
-        margin-top: 30px;
-        overflow: hidden;
-        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg")
-    }
+.arrow-down:after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 171px solid white;
+    border-right: 142px solid white;
+    border-top: 271px solid transparent;
+    position: relative;
+}
 
-    .arrow-down:after {
-        display: block;
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: 171px solid white;
-        border-right: 142px solid white;
-        border-top: 271px solid transparent;
-        position: relative;
-    }
+.logo {
+    clear: both;
+    width: 274px;
+    height: 200px;
+    margin-top: -317px;
+    margin-left: 350px;
+}
 
-    .logo {
-        clear: both;
-        width: 274px;
-        height: 200px;
-        margin-top: -317px;
-        margin-left: 350px;
-    }
+.arrow-up {
+    width: 300px;
+    height: 300px;
+    line-height: 0;
+    margin-top: -29px;
+    margin-bottom: 30px;
+    float: left;
+    background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
+}
 
-    .arrow-up {
-        width: 300px;
-        height: 300px;
-        line-height: 0;
-        margin-top: -29px;
-        margin-bottom: 30px;
-        float: left;
-        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
-    }
+.arrow-up:after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 169px solid white;
+    border-right: 158px solid white;
+    border-bottom: 286px solid transparent;
+    position: relative;
+}
 
-    .arrow-up:after {
-        display: block;
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: 169px solid white;
-        border-right: 158px solid white;
-        border-bottom: 286px solid transparent;
-        position: relative;
-    }
+.logo {
+    width: 274px;
+    height: 200px;
+    margin-top: -317px;
+    margin-left: 330px;
+}
 
-    .logo {
-        width: 274px;
-        height: 200px;
-        margin-top: -317px;
-        margin-left: 330px;
-    }
+.arrow-down2 {
+    width: 292px;
+    height: 198px;
+    line-height: 0;
+    margin-left: 226px;
+    margin-top: -20px;
+    overflow: hidden;
+    background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
+    position: absolute;
+}
 
-    .arrow-down2 {
-        width: 292px;
-        height: 198px;
-        line-height: 0;
-        margin-left: 226px;
-        margin-top: -20px;
-        overflow: hidden;
-        background: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0139/6205/rrr1396205_rrrrrdw_quote_shop_preview.jpg");
-        position: absolute;
-    }
+.arrow-down2:after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 155px solid white;
+    border-right: 144px solid white;
+    border-top: 205px solid transparent;
+}
 
-    .arrow-down2:after {
-        display: block;
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: 155px solid white;
-        border-right: 144px solid white;
-        border-top: 205px solid transparent;
-    }
+.btnHomePage {
+    float: right;
+    width: 410px;
+    margin-right: -9px;
+    margin-top: -104px;
+    background-color: #FA9D5F !important;
+}
 
-    .btnHomePage {
-        float: right;
-        width: 410px;
-        margin-right: -9px;
-        margin-top: -104px;
-        background-color: #FA9D5F !important;
-    }
+.btn {
+    float: right;
+}
 
-    .btn {
-        float: right;
-    }
+.button {
+    padding-left: 2.0em;
+    padding-right: 2.0em;
+    margin-left: 9px;
+}
 
-    .bing-img {
-        height: 320px;
-        width: 320px;
-    }
+.bing-img {
+    height: 320px;
+    width: 320px;
+}
 
-    .about {
-        margin-top: -224px;
-        color: black;
-        padding-left: 584px;
-        float: right;
-    }
-    /*
-.frontTriPic{
-    background: url(https://previews.123rf.com/images/amiloslava/amiloslava1401/amiloslava140100207/25198992-Seamless-pattern-with-handwriting-text-Stock-Vector-writing-handwriting-cursive.jpg);
-}*/
+.about {
+    margin-top: -224px;
+    color: black;
+    padding-left: 584px;
+    float: right;
+}
 
-    .mapSearch {
-        position: absolute;
-        top: 0;
-        z-index: 200;
-        left: 11px;
-        background-color: rgb(233, 220, 220);
-        opacity: .5;
-    }
+.mapSearch {
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    left: 11px;
+    background-color: rgb(233, 220, 220);
+    opacity: .75;
+}
 
-    .mapContainer {
-        position: relative;
-    }
+.mapContainer {
+    position: relative;
+}
 
-    .searchBtn {
-        text-align: center;
-        margin-bottom: 3px;
-    }
+.searchBtn {
+    margin-bottom: 3px;
+    text-align: center;
+    padding-left: 2.0em !important;
+    padding-right: 2.0em !important;
+}
 
-    .emptydiv {
-        margin-top: 50px;
-    }
+.emptydiv {
+    margin-top: 50px;
+}
 
-    .searchBar {
-        margin-left: 460px;
-        margin-top: 50px;
-    }
-
+.searchBar {
+    margin-left: 433px;
+    margin-top: 50px;
+}
 
 .grid-item {
     margin: 3px;
+    background-color: #EAEAEA;
+    width: 250px;
+    border-radius: 5px;
+    padding: 2px;
+    text-align: center;
 }
 
 img {
     width: 30%;
 }
 
-#giphy-area {
-    margin-left: 97px;
+.secondpgLogo {
+    margin-top: 20px;
+    margin-left: 514px;
+    width: 22%;
 }
 
+.cursive {
+    font-family: 'Satisfy', cursive;
+    font-size: 20px;
+}
 
+.synonym {
+    margin-left: 10px;
+}
 
+.quote {
+    margin-right: 400px;
+    margin-top: -250px;
+}
 
+.word-area {
+    margin-left: 400px;
+}
 
+.discription {
+    font-family: 'Lora', serif;
+    color: gray;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 33px;
+    margin-bottom: 64px;
+}
 
+.bottomBorder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+    margin-top: 8px;
+    margin-bottom: 9px;
+    width: 963px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.topBorder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+    margin-top: -10px;
+    margin-bottom: 9px;
+    width: 963px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.mapFontTag {
+    margin-top: 115px;
+    font-family: 'Lora', serif;
+    color: gray;
+    font-size: 15px;
+    text-align: center;
+}
 
+.giphy-area-container {
+    display: flex;
+}
+
+.flex-area {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.imgHeight {
+    height: 200px
+}
+
+.map-area-container {
+    display: flex;
+}

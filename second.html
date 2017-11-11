@@ -9,6 +9,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css">
@@ -16,73 +18,93 @@
 
 <body>
 
-
 	<div class="container">
 
-		<div class="emptydiv"></div>
-
 		<div>
-			<div class="searchBtn">
-				<a class="button topic-btn">Normal</a>
-				<a class="button topic-btn">Funny</a>
-				<a class="button topic-btn">Horse</a>
-				<a class="button topic-btn">Food</a>
-				<a class="button topic-btn">Dance</a>
-				<a class="button topic-btn">Crime</a>
-				<a class="button topic-btn">Disney</a>
-				<a class="button topic-btn">Stars</a>
-			</div>
-
-			<div class="searchBtn">
-				<a class="button">This row needs to be a word they have typed in.</a>
-
-			</div>
-
+			<img class="secondpgLogo" src="assets/images/writersblocksmall.png">
 		</div>
 
 		<div class="searchBar">
 			<div class="row searchBtn">
 				<div class="input-field col s6" id="movie-input">
-					<input placeholder="Word of Inspration" id="first_name2 add-word" type="text" class="validate">
+					<input placeholder="Type a word for inspration" id="first_name2 add-word" type="text" class="validate">
 					<label class="active" for="first_name2"></label>
 				</div>
 			</div>
 		</div>
 
+		<div class="topBorder"></div>
 
+		<div class="searchBtn">
+			<a class="button topic-btn">Normal</a>
+			<a class="button topic-btn">Funny</a>
+			<a class="button topic-btn">Horse</a>
+			<a class="button topic-btn">Food</a>
+			<a class="button topic-btn">Dance</a>
+			<a class="button topic-btn">Crime</a>
+			<a class="button topic-btn">Disney</a>
+			<a class="button topic-btn">Stars</a>
+		</div>
+
+		<div class="bottomBorder"></div>
+
+		<div class="container">
+			<p class="discription">Click on a button, or search a word/phrase
+				<br> and gain instant inspiration! </p>
+
+		</div>
+
+		<!-- this is the end of the container tag -->
 	</div>
 
-	<div class="container">
+	<div class="container giphy-area-container">
 
-		<div class="mapContainer">
-			<div class="row mapSearch">
-				<div class="input-field col s12">
-					<input id="mapSearch" type="text" class="validate">
-					<label class="active" for="mapSearch">Search City</label>
+		<div class="word-container">
+			<div class="span-up">
+				<span id="word-area" class="quoteSyn"></span>
+				<span id="quote-area" class="quoteSyn"></span>
+			</div>
+			<div class="song-word-container">
+				<div class="span-down">
+					<span class="tiles"></span>
 				</div>
 			</div>
-			<div id="googleMap" style="width:100%; height:60vh;"></div>
 		</div>
 
 
-		<div>
-			<div>
-				<div id="giphy-area" class="grid tiles" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'>
-
-					  <div class="grid-item"></div>
-				</div>				
-
-				</div>
+		<div class="grid-giphy-container">
+			<div id="giphy-area" class="grid flex-area" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'>
 
 			</div>
+		</div>
 
 	</div>
-	
+
+
+	<div class=" container map-area-container">
+		<div class="grid-map-container">
+			<div id="map-area" class="grid flex-area" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'>
+
+			</div>
+		</div>
+	</div>
+
+
+	<p class="mapFontTag">Click anywhere on the map and get a video that was made in that area!!</p>
+
+	<div class="mapContainer">
+		<div id="googleMap" style="width:100%; height:60vh;"></div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	    crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	<script src="assets/javascript/main.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY2aMZMMV2WwEdBb0XbwBunGWZBkZgch4&callback=myMap"></script>
 </body>
+
+<footer>
+
+</footer>
 
 </html>
