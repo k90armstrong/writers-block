@@ -191,7 +191,7 @@ $(document).ready(function () {
     function runSongAPI(searchValue) {
         // var type = $(this).data('type');
         var type = searchValue;
-        var queryURL = 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
+        var queryURL = 'https://ws.audioscrobbler.com/2.0/?method=track.search&track=' + type + '&api_key=dde77cbf0e2687a7d9e2ce7c75179283&format=json';
         $.ajax({
                 url: queryURL,
                 method: 'GET'
@@ -349,7 +349,7 @@ $(document).ready(function () {
 
     function runquoteAPI(searchValue) {
 
-        var queryURL = "http://quotes.rest/qod.json";
+        var queryURL = "https://quotes.rest/qod.json";
 
         $.ajax({
 
