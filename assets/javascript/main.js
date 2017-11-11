@@ -73,7 +73,7 @@ function runMapAPI(location) {
     var url = "https://www.googleapis.com/youtube/v3/search";
     var apiKey = "AIzaSyDiw5W_Am-hswMW8NXMzx9iLCOM95cG5us";
     url += '?' + $.param({
-        maxResults: '',
+        maxResults: '6',
         part: 'snippet',
         location: locString,
         locationRadius: '10mi',
