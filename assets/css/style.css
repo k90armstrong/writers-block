@@ -92,7 +92,6 @@
     padding-left: 2.0em;
     padding-right: 2.0em;
     margin-left: 9px;
-
 }
 
 .bing-img {
@@ -136,7 +135,6 @@
     margin-top: 50px;
 }
 
-
 .grid-item {
     margin: 3px;
     background-color: #EAEAEA;
@@ -144,7 +142,6 @@
     border-radius: 5px;
     padding: 2px;
     text-align: center;
-
 }
 
 img {
@@ -156,8 +153,6 @@ img {
     margin-left: 514px;
     width: 22%;
 }
-
-
 
 .cursive {
     font-family: 'Satisfy', cursive;
@@ -171,7 +166,6 @@ img {
 .quote {
     margin-right: 400px;
     margin-top: -250px;
-
 }
 
 .word-area {
@@ -182,8 +176,8 @@ img {
     font-family: 'Lora', serif;
     color: gray;
     font-size: 25px;
-    text-align: center; 
-    margin-top: 33px; 
+    text-align: center;
+    margin-top: 33px;
     margin-bottom: 64px;
 }
 
@@ -193,8 +187,9 @@ img {
     border-color: orange;
     margin-top: 8px;
     margin-bottom: 9px;
-    width: 993px;
-    margin-left: 166px;
+    width: 963px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .topBorder {
@@ -203,8 +198,9 @@ img {
     border-color: orange;
     margin-top: -10px;
     margin-bottom: 9px;
-    width: 993px;
-    margin-left: 166px;
+    width: 963px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mapFontTag {
@@ -213,7 +209,6 @@ img {
     color: gray;
     font-size: 15px;
     text-align: center;
-
 }
 
 .giphy-area-container {
@@ -233,6 +228,3 @@ img {
 .map-area-container {
     display: flex;
 }
-
-
-
